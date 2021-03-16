@@ -7,6 +7,7 @@ window.onload = function() {
 };
 
 function resize() {
+	console.log('Resize');
 	// SEGA genesis resolution
 	canvas.width = 320;
 	canvas.height = 224;
@@ -19,13 +20,13 @@ function resize() {
 
 	canvas.style.height = '';
 	canvas.style.width = '';
-	canvas.style.marginLeft = '';
+	//canvas.style.marginLeft = '';
 	canvas.style.marginTop = '';
 
 	if ( h > w) {
 		// center horizontally
 		canvas.style.height = '100%';
-		canvas.style.marginLeft = (width - canvas.offsetWidth) / 2 + 'px';
+		//canvas.style.marginLeft = (width - canvas.offsetWidth) / 2 + 'px';
 	} else {
 		// center vertically
 		canvas.style.width = '100%';
@@ -34,7 +35,7 @@ function resize() {
 }
 
 window.onorientationchange = function(event) {
-  resize();
+  setTimeout(resize, 100);
 };
 
 window.onresize = resize;
