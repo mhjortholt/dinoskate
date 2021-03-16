@@ -17,6 +17,11 @@ function resize() {
 	let w = canvas.width / width;
 	let h = canvas.height / height;
 
+	canvas.style.height = '';
+	canvas.style.width = '';
+	canvas.style.marginLeft = '';
+	canvas.style.marginTop = '';
+
 	if ( h > w) {
 		// center horizontally
 		canvas.style.height = '100%';
@@ -28,6 +33,8 @@ function resize() {
 	}
 }
 
-window.addEventListener('orientationchange', function() {
-	setTimeout(resize, 50);
-}, false);
+window.onorientationchange = function(event) {
+  resize();
+};
+
+window.onresize = resize;
