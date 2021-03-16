@@ -1,0 +1,47 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+html, body {
+	font-family: sans-serif;
+	color: #333;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 5px #666;
+	font-weight: bold;
+	
+	-webkit-touch-callout: none;
+	-webkit-user-select: none; /* Disable selection/copy in UIWebView */
+	-webkit-tap-highlight-color: transparent;
+
+	 position: fixed; top: 0; left: 0; right:0; bottom: 0;
+}
+
+body {
+	background: #ddd;
+}
+
+canvas {
+	position: fixed;
+	background: transparent;
+	/*image-rendering: -moz-crisp-edges;*/
+	/*image-rendering: -webkit-crisp-edges;*/
+	image-rendering: pixelated;
+	/*image-rendering: crisp-edges;*/
+}
+button {
+	padding: 10px;
+}
+
+#canvas {
+	background: red;
+}
+#canvas_container {
+	color: gold;
+	height: 100%;
+	width: 100%;
+	background: #000;
+}
+
+#images {
+	display: none;
+}
