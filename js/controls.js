@@ -16,21 +16,25 @@ let skate_ctx = skateCanvas.getContext('2d');
 
 let touchPoints = [];
 skateCanvas.addEventListener('touchstart', function(e) { 
+	
 	var rect = skateCanvas.getBoundingClientRect();
-	let x = event.touches[0].clientX - rect.left;
-	let y = event.touches[0].clientY - rect.top;
+	for (var i =  0; i < e.touches.length; i++) {
+		let touch = e.touches[i];
+		let x = touch.clientX - rect.left;
+		let y = touch.clientY - rect.top;
 
-	// Add touch point
-	touchPoints.push({
-		x: x,
-		y: y,
-		fade: 1.0
-	});
+		// Add touch point
+		touchPoints.push({
+			x: x,
+			y: y,
+			fade: 1.0
+		});
 
-	if(y > 200) {
-		healPress();
-	} else {
-		nosePress();
+		if(y > 200) {
+			healPress();
+		} else {
+			nosePress();
+		}
 	}
 
  }, false);
