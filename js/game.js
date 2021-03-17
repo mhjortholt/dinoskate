@@ -36,53 +36,70 @@ function step() {
 	drawWorld();
 	checkInput();
 	updateDino();
+
+	// controls
+	updateTouch();
+	drawTouch();
 }
 
 function drawDino() {
-	if (popping) {
+	if (healPopper.poppin) {
 		ctx.drawImage(pop, x, y);
-	} else if(nolliePopping) {
+	} else if(nosePopper.poppin) {
 		ctx.drawImage(nolliepop, x, y);
 	}else {
 		ctx.drawImage(dino, x, y);
 	}
 }
 
-let popppinTimer = false;
-let nolliepopTimer = false;
+let healPopper = {
+	timer: false,
+	poppin: false
+};
+let nosePopper = {
+	timer: false,
+	poppin: false
+};
+
 function checkInput() {
 	if(keys[32] && !inAir) {
 		jump();
 	}
 	if(keys[78] && !inAir) {
-		if(nolliePopping) {
-			nolliePopping = false;
-			jump();
-			clearTimeout(nolliepopTimer);
-		} else {
-			clearTimeout(popppinTimer);
-			popping = true;
-			popppinTimer = setTimeout(function() {
-				popping = false;
-			}, 500);
-		}
+		healPress();
 	}
 	if(keys[75] && !inAir) {
-		if (popping) {
-			popping = false;
-			jump();
-			clearTimeout(popppinTimer);
-		} else {
-			clearTimeout(nolliepopTimer);
-			nolliePopping = true;
-			nolliepopTimer = setTimeout(function() {
-				nolliePopping = false;
-			}, 500);
-		}
+		nosePress();
 	}
 }
-let popping = false;
-let nolliePopping = false;
+
+function healPress() {
+	if(nosePopper.poppin) {
+		nosePopper.poppin = false;
+		jump();
+		clearTimeout(nosePopper.timer);
+	} else {
+		clearTimeout(healPopper.timer);
+		healPopper.poppin = true;
+		healPopper.timer = setTimeout(function() {
+			healPopper.poppin = false;
+		}, 500);
+	}
+}
+
+function nosePress() {
+	if (healPopper.poppin) {
+		healPopper.poppin = false;
+		jump();
+		clearTimeout(healPopper.timer);
+	} else {
+		clearTimeout(nosePopper.timer);
+		nosePopper.poppin = true;
+		nosePopper.timer = setTimeout(function() {
+			nosePopper.poppin = false;
+		}, 500);
+	}
+}
 
 
 function jump() {

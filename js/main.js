@@ -1,6 +1,7 @@
 var canvas, ctx;
 window.onload = function() {
 	canvas = document.getElementById('canvas');
+
 	ctx = canvas.getContext('2d');
 	resize();
 	start();
@@ -8,6 +9,15 @@ window.onload = function() {
 
 function resize() {
 	console.log('Resize');
+	
+	// skateboard
+	skateCanvas.style.width = '350px';
+	skateCanvas.style.height = window.innerHeight;
+	skateCanvas.width = 350;
+	skateCanvas.height = window.innerHeight;
+
+
+
 	// SEGA genesis resolution
 	canvas.width = 320;
 	canvas.height = 224;
