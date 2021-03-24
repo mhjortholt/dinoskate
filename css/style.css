@@ -66,3 +66,19 @@ button {
 #images {
 	display: none;
 }
+
+
+#overlay {
+	position: fixed;
+	top: 32px;
+	left: 32px;
+	image-rendering: pixelated;
+	cursor: pointer;
+}
+#pause { width: 64px; }
+#restart { display: none; width: 64px; }
+
+
+
+
+

@@ -11,6 +11,9 @@ function start() {
 function stop() {
 	clearInterval(gameInterval);
 	log('Stopped');
+
+	document.getElementById('pause').style.display = 'none';
+	document.getElementById('restart').style.display = 'block';
 }
 
 function play() {
