@@ -39,6 +39,23 @@ skateCanvas.addEventListener('touchstart', function(e) {
 
  }, false);
 
+
+skateCanvas.addEventListener('touchmove', function(evt) {
+	var rect = skateCanvas.getBoundingClientRect();
+	for (var i =  0; i < e.touches.length; i++) {
+		let touch = e.touches[i];
+		let x = touch.clientX - rect.left;
+		let y = touch.clientY - rect.top;
+
+		
+		if(touchPoints[i]) {
+			touchPoints[i].x = x;
+			touchPoints[i].y = y;
+		}
+	}
+}, false);
+
+
 function updateTouch() {
 	let remove = [];
 	for ( let i = touchPoints.length-1; i >= 0; i--) {

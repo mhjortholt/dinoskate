@@ -2,13 +2,7 @@
 	margin: 0;
 	padding: 0;
 }
-html, body {
-	font-family: sans-serif;
-	color: #333;
-	text-transform: uppercase;
-	text-shadow: 0px 0px 5px #666;
-	font-weight: bold;
-	
+html, body {	
 	-webkit-touch-callout: none;
 	-webkit-user-select: none; /* Disable selection/copy in UIWebView */
 	-webkit-tap-highlight-color: transparent;
@@ -16,9 +10,6 @@ html, body {
 	 position: fixed; top: 0; left: 0; right:0; bottom: 0;
 }
 
-body {
-	background: #ddd;
-}
 
 canvas {
 	position: fixed;
@@ -75,8 +66,8 @@ button {
 	image-rendering: pixelated;
 	cursor: pointer;
 }
-#pause { width: 64px; }
-#restart { display: none; width: 64px; }
+#pause { width: 32px; }
+#restart { display: none; width: 32px; }
 
 
 
