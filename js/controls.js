@@ -40,7 +40,7 @@ skateCanvas.addEventListener('touchstart', function(e) {
  }, false);
 
 
-skateCanvas.addEventListener('touchmove', function(evt) {
+skateCanvas.addEventListener('touchmove', function(e) {
 	var rect = skateCanvas.getBoundingClientRect();
 	for (var i =  0; i < e.touches.length; i++) {
 		let touch = e.touches[i];
