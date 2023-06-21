@@ -21,6 +21,7 @@ canvas.ontouchstart = (e) => {
   //start();
 
   drawTouches(e.touches)
+  document.getElementById('console').innerHTML = e.touches[0].identifier;
 };
 
 canvas.ontouchmove = (e) => {
@@ -35,6 +36,7 @@ function drawTouches(touches) {
   clear();
   for(let i = 0; i < touches.length; i++) {
     drawTouch(touches[i].clientX, touches[i].clientY, colors[touches[i].identifier])
+    // pageX, pageY
   }
 }
 
