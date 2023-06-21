@@ -51,7 +51,11 @@ button {
 	position: fixed;
 	right: 0;
 	top: 0;
-	border: 2px red dashed;
+	/*border: 2px red dashed;*/
+
+	image-rendering: -moz-crisp-edges;
+	image-rendering: -webkit-crisp-edges;
+	image-rendering: crisp-edges;
 }
 
 #images {

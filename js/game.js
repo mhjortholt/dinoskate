@@ -1,15 +1,21 @@
-var gameInterval;
-var x = 24, y = 96;
-var inAir = false;
-var xv = 0;
-var yv = 0;
+var requestID;
+
+let player = {
+	x: 32,
+	y: 76 - 20, //76
+	inAir: false,
+	xv: 0,
+	yv: 0
+}
+
+
 function start() {
 	
 	play();
 }
 
 function stop() {
-	clearInterval(gameInterval);
+	cancelAnimationFrame(requestID);
 	log('Stopped');
 
 	document.getElementById('pause').style.display = 'none';
@@ -17,7 +23,7 @@ function stop() {
 }
 
 function play() {
-	gameInterval = setInterval(step, 20);
+	gameLoop();
 	log('Started');
 }
 
@@ -31,28 +37,69 @@ function die(reason) {
 	stop();
 }
 
+function gameLoop() {
 
-function step() {
-	clear();
-	drawBackground();
-	drawDino();
-	drawWorld();
-	checkInput();
+	// updatePlayer()
+
 	updateDino();
+	//updateWorld();
+
+	// draw
+	draw();
+
+
+	checkInput();
+
 
 	// controls
 	updateTouch();
 	drawTouch();
+
+	requestID = requestAnimationFrame(gameLoop);
+}
+
+function drawTiles() {
+	ctx.beginPath();
+
+}
+
+function draw() {
+	clear();
+	ctx.translate(0.5, 0.5);
+	drawBackground();
+	drawDino();
+	drawWorld();
+	drawTiles();
+	ctx.translate(-0.5, -0.5);
 }
 
 function drawDino() {
+
+	ctx.beginPath();
+
+	ctx.imageSmoothingEnabled = false;
+/*
 	if (healPopper.poppin) {
-		ctx.drawImage(pop, x, y);
+		ctx.drawImage(pop, player.x, player.y);
 	} else if(nosePopper.poppin) {
-		ctx.drawImage(nolliepop, x, y);
+		ctx.drawImage(nolliepop, player.x, player.y);
 	}else {
-		ctx.drawImage(dino, x, y);
-	}
+		ctx.drawImage(dino, player.x, player.y);
+	}*/
+
+	// hitbox
+	ctx.beginPath();
+	ctx.rect(player.x, player.y, 32, 40);
+	ctx.strokeStyle = '#f00';
+	ctx.stroke();
+
+	// skate hitbox
+	ctx.beginPath();
+	ctx.rect(player.x - 8,  player.y + 40, 48, 4);
+	ctx.rect(player.x    ,  player.y + 45, 5,  5); // wheel1
+	ctx.rect(player.x + 28, player.y + 45, 5,  5); // wheel2
+	ctx.strokeStyle = '#f00';
+	ctx.stroke();
 }
 
 let healPopper = {
@@ -64,15 +111,23 @@ let nosePopper = {
 	poppin: false
 };
 
+
 function checkInput() {
-	if(keys[32] && !inAir) {
+	if(keys[32] && !player.inAir) {
 		jump();
 	}
-	if(keys[78] && !inAir) {
+	if(keys[78] && !player.inAir) {
 		healPress();
 	}
-	if(keys[75] && !inAir) {
+	if(keys[75] && !player.inAir) {
 		nosePress();
+	}
+
+	if(keys[37]) { //left
+		
+	}
+	if(keys[39]) { // right
+		
 	}
 }
 
@@ -106,44 +161,65 @@ function nosePress() {
 
 
 function jump() {
-	inAir = true;
-	yv = -14;
+	player.inAir = true;
+	player.yv = -3;
 }
 
 function updateDino() {
 	
-	if (yv > 0) {
-		y += yv;
-		yv *= 1.3;
+	if (player.yv > 0) {
+		player.y += player.yv;
+		player.yv *= 1.03;
 	}
 
-	if (yv < 0) {
-		y += yv;
-		yv *= 0.8;
-		if ( yv > -1) {
-			yv = 1;
+	if (player.yv < 0) {
+		player.y += player.yv;
+		player.yv *= 0.97;
+		if ( player.yv > -0.5) {
+			player.yv = 1;
 		}
 	}
 
-	if(y > 96) {
-		y = 96;
-		yv = 0;
-		inAir = false;
+	if(player.y > 96) {
+		player.y = 96;
+		player.yv = 0;
+		player.inAir = false;
 	}
 
-	//Update rock
-	rockX -= 4;
-	if (rockX < -32) {
-		rockX = 352;
-	}
+
 }
-var rockX = 352;
+
+let world = {
+	x: 0,
+	y: 128,
+	tiles: [
+		[ 0, 0, 100 ],
+		[ 32, 32, 200],
+	]
+}
 function drawWorld() {
-	ctx.drawImage(rock, rockX, 112);
+	
+	
+	ctx.beginPath();
+	ctx.moveTo(world.x, world.y);
+	let traveled = 0;
+	for(let i = 0; i < world.tiles.length; i++) {
+		let tile = world.tiles[i];
+		ctx.lineTo(world.x + (traveled), world.y + tile[0]);
+		ctx.lineTo(tile[2], world.y + tile[1]);
+		traveled += tile[2];
+	}
+	
+	ctx.strokeStyle = '#00f';
+	ctx.stroke();
 }
 
 function drawBackground() {
-	ctx.drawImage(background, 0, 0);
+	//ctx.drawImage(background, 0, 0);
+	ctx.beginPath();
+	ctx.rect(0,0, 420, 224);
+	ctx.fillStyle = '#fff';
+	ctx.fill();
 }
 
 

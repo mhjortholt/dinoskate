@@ -19,7 +19,7 @@ function resize() {
 
 
 	// SEGA genesis resolution
-	canvas.width = 320;
+	canvas.width = 420; //original 320
 	canvas.height = 224;
 
 	let width = window.innerWidth;

@@ -1,0 +1,145 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+html, body {
+	font-family: 'PT Sans', sans-serif;
+	color: #333;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 5px #666;
+	font-weight: bold;
+	
+	-webkit-touch-callout: none;
+	-webkit-user-select: none; /* Disable selection/copy in UIWebView */
+	-webkit-tap-highlight-color: transparent;
+
+	 position: fixed; top: 0; left: 0; right:0; bottom: 0;
+}
+
+body {
+	background: #ddd;
+}
+
+canvas {
+	position: fixed;
+	background: transparent;
+}
+button {
+	padding: 10px;
+}
+
+#canvas {
+	background: #fff;
+}
+#canvas_container {
+	color: gold;
+	height: 100%;
+}
+
+#foreground {
+	pointer-events: none;
+}
+
+#images {
+	display: none;
+}
+#menu {
+	position: fixed;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	background: #333;
+	height: 50px;
+	display: none;
+}
+#menu div {
+	display: inline-block;
+	color: #fff;
+}
+#menu .btn {
+	height: 30px;
+	background: #666;
+	padding: 5px;
+	margin: 5px;
+	cursor: pointer;
+}
+#menu .btn.active {
+	background: red;
+}
+#menu #color {
+	float: right;
+	width: 30px;
+	height: 30px;
+	margin: 10px;
+	border-radius: 30px;
+}
+
+.control-btn {
+	position: absolute;
+	width: 80px;
+	height: 70px;
+	cursor: pointer;
+	text-align: center;
+}
+.control-btn.left {
+	left: 0px;
+}
+.control-btn.left2 {
+	left: 80px;
+	width: 120px;
+}
+.control-btn.right {
+	right: 0px;
+}
+.control-btn.right2 {
+	right: 80px;
+	width: 120px;
+}
+.control-btn.bottom {
+	bottom: 5px;
+}
+.control-btn.top {
+	top: 0px;
+}
+.control-btn.red {
+	background: rgba(255,0,0, 0.4);
+}
+.control-btn.blue {
+	background: rgba(0,0,255, 0.4);
+}
+.control-btn.green {
+	background: rgba(0,255,0, 0.4);
+}
+.control-btn.yellow {
+	background: rgba(255,255,0, 0.4);
+}
+.control-btn { background: transparent; padding-top: 30px; font-size: 40px;}
+
+#restart {
+	position: absolute;
+	z-index: 100;
+	top: 200px;
+	left: 50px;
+	right: 50px;
+	bottom: 100px;
+	text-align: center;
+	font-size: 50px;
+	padding-top: 50px;
+	cursor: pointer;
+	display: none;
+}
+#score {
+	z-index: 100;
+	position: absolute;
+	right: 20px;
+	top: 20px;
+}
+#logo {
+	 display: none;
+	 width: 150px;
+	 height: 100px;
+	 position: absolute;
+	 margin: 10px;
+}
+
+
