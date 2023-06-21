@@ -12,7 +12,7 @@
 	<style>
 		* { margin: 0; padding: 0; background: black; }
 		body { overflow: hidden; }
-		div {
+		#container {
 			background: red;
 			position: absolute;
 			left: 0;
@@ -29,10 +29,11 @@
 </head>
 <body>
 
-	<div>
+	<div id="container">
 		<canvas id="swipe_canvas"></canvas>
 	</div>
 
+	<div style="position: absolute; top: 0; left: 0; background: lime; width: 30px; height: 30px;" onclick="location.reload();"></div>
 <script src="swipe.js"></script>
 </body>
 </html>
