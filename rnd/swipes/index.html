@@ -10,8 +10,13 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 	<style>
+
 		* { margin: 0; padding: 0; background: black; }
-		body { overflow: hidden; }
+		body { 
+			overflow: hidden; 
+			-webkit-touch-callout: none !important;
+			-webkit-user-select: none !important;
+		}
 		#container {
 			background: red;
 			position: absolute;
