@@ -35,7 +35,7 @@ canvas.ontouchend = (e) => {
 function drawTouches(touches) {
   clear();
   for(let i = 0; i < touches.length; i++) {
-    drawTouch(touches[i].clientX, touches[i].clientY, colors[touches[i].identifier])
+    drawTouch(touches[i].clientX, touches[i].clientY, colors[touches[i].identifier % colors.length])
     // pageX, pageY
   }
 }
