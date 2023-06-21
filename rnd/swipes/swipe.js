@@ -3,7 +3,7 @@ const canvas = document.getElementById('swipe_canvas');
 const ctx = canvas.getContext('2d');
 
 let swipe_objects = [];
-let colors = ['red', 'lime', 'yellow', 'pink', 'magenta', 'white'];
+let colors = ['#ff0000', '#00ff00', '#ff00ff', '#ffff00', '#ffffff', '#00ffff'];
 
 
 canvas.ontouchstart = (e) => {
@@ -41,7 +41,7 @@ function drawTouches(touches) {
 function drawTouch(x, y, color) {
   ctx.fillStyle = color;
   ctx.beginPath();
-  ctx.arc(x, y, 20, 0, 2 * Math.PI);
+  ctx.arc(x, y, 50, 0, 2 * Math.PI);
   ctx.fill();
 }
 
