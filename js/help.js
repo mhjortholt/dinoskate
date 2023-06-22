@@ -10,7 +10,8 @@ function normRad(a) {
 }
 
 function angleBetween(p1, p2) {
-	return normRad(Math.atan2(p2.y - p1.y, p2.x - p1.x));
+	return Math.atan2(p2.y - p1.y, p2.x - p1.x)
+	//return normRad(Math.atan2(p2.y - p1.y, p2.x - p1.x));
 }
 
 function diffAngle(v1, v2) {

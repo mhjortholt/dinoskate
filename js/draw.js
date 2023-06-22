@@ -4,15 +4,22 @@ function clear() {
 
 function draw() {
 	clear();
+	
 	ctx.translate(0.5, 0.5);
 	drawBackground();
+
+	ctx.save()
+	ctx.translate( 0, -world.y + 140);
+
 	//drawDino();
 	drawPlayer();
 	drawWorld();
-	drawTiles();
+
 	if(DRAW_HITBOXES) {
 		drawHitboxes();
 	}
+	ctx.restore();
+
 	ctx.translate(-0.5, -0.5);
 }
 
@@ -20,6 +27,7 @@ function drawHitboxes() {
 	ctx.strokeStyle = '#f00';
 	//drawDinoHitboxes();
 	drawPlayerHitboxes();
+	drawWorldHitboxes();
 }
 
 function drawBackground() {

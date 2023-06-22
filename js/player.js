@@ -1,30 +1,5 @@
 let player = {
 
-	skateboard: {
-		wheel1: {
-			x: 0,
-			y: 0,
-			r: 4,
-			yv: 0,
-			xv: 0
-		},
-		wheel2: {
-			y: 0
-		},
-		board: {
-
-		}
-	}
-/*
-	x: 32,
-	y: 76,
-	inAir: true,
-	xv: 0,
-	yv: 1,
-	h: 38,
-	w: 25,*/
-
-
 }
 let wheel1 = {
 	x: 40,
@@ -53,7 +28,7 @@ function updatePlayer() {
 	// apply gravity to wheel 1
 	if(touchesGround(wheel1)) {
 		wheel1.vy = 0;
-		wheel1.y = world.y - wheel1.h; // Tileprogress y typ
+		wheel1.y = worldY(wheel1) - wheel1.h;
 	} else {
 		applyDownForce(wheel1);
 	}
@@ -62,7 +37,7 @@ function updatePlayer() {
 	// apply gravity to wheel 2
 	if(touchesGround(wheel2)) {
 		wheel2.vy = 0;
-		wheel2.y = world.y - wheel1.h; // Tileprogress y typ
+		wheel2.y = worldY(wheel2) - wheel1.h;
 	} else {
 		applyDownForce(wheel2);
 	}
@@ -75,7 +50,7 @@ function updatePlayer() {
 		wheel2.y = wheel1.y + Math.sin(a) * SKATEBOARD_LENGTH;
 	} else {
 		let y = wheel2.y -  wheel1.y;
-		wheel2.x = wheel1.x + Math.sqrt(SKATEBOARD_LENGTH*SKATEBOARD_LENGTH - y*y);
+		wheel2.x = wheel1.x + Math.sqrt(Math.abs(SKATEBOARD_LENGTH*SKATEBOARD_LENGTH - y*y));
 	}
 
 }
@@ -109,32 +84,44 @@ function updateDino() {
 function heelPress() {
 	if(touchesGround(wheel1) && touchesGround(wheel2)) {
 		jumpWheel2();
+		jumpTimer = Date.now();
 	} else if(touchesGround(wheel2)) {
-		jumpWheel2();
 		log('Nollie!')
+		let diff = Date.now() - jumpTimer;
+		jumpWheel2(diff);
 	}
 }
 
 function nosePress() {
 	if(touchesGround(wheel1) && touchesGround(wheel2)) {
 		jumpWheel1();
+		jumpTimer = Date.now();
 	} else if(touchesGround(wheel1)) {
-		jumpWheel1();
 		log('Ollie!')
+		let diff = Date.now() - jumpTimer;
+		jumpWheel1(diff);
 	}
 }
 
-function jumpWheel1() {
+let jumpTimer = 0;
+function jumpWheel1(speed) {
+
+	if(speed === undefined) {
+		speed = 3.0;
+	} else {
+		speed = 4.0 - Math.abs(300 - speed) / 100; // TODO trimma
+	}
+	log(speed);
 	if (touchesGround(wheel1)) {
-		wheel1.vy = -3.0;
-		wheel1.y = world.y - wheel1.h - 1; // lift off ground
+		wheel1.vy = -speed;
+		wheel1.y = worldY(wheel1) - wheel1.h - 1; // lift off ground
 	}
 }
 
-function jumpWheel2() {
+function jumpWheel2(speed) {
 	if(touchesGround(wheel2)) {
 		wheel2.vy = -3.0;
-		wheel2.y = world.y - wheel2.h - 1; // lift off ground
+		wheel2.y = worldY(wheel2) - wheel2.h - 1; // lift off ground
 	}
 }
 
@@ -144,7 +131,7 @@ function jump() {
 }
 
 function touchesGround(obj) {
-	return obj.y + obj.h >= world.y;
+	return obj.y + obj.h >= worldY(obj);
 }
 
 function applyDownForce(obj) {
@@ -181,6 +168,7 @@ function drawDino() {
 }
 
 function drawPlayerHitboxes() {
+
 	// wheel1
 	ctx.beginPath();
 	ctx.arc(wheel1.x, wheel1.y, wheel1.r, 0, 2 * Math.PI);
@@ -204,7 +192,6 @@ function drawPlayerHitboxes() {
 	ctx.stroke();
 
 	ctx.restore();
-
 }
 
 function drawDinoHitboxes() {
