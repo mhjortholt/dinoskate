@@ -1,5 +1,5 @@
 {
     "orientation": "landscape", /* Could be "landscape" or "portrait" */
-    "name": "TITLE",
+    "name": "Dino Skate",
     "display": "standalone"
 }

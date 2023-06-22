@@ -22,14 +22,15 @@
 	<canvas id="canvas"></canvas>
 </div>
 
-<!--<div id="skate_container">
-	<img src="./img/skateboard.png" id="skateboard" />-->
-	<canvas id="skate_canvas"></canvas>
-<!--</div>-->
+<div id="swipe_container">
+	<div id="swipeboard"></div>
+	<canvas id="swipe_canvas"></canvas>
+</div>
 
 <div id="overlay">
 	<img id="pause" src="img/pause.png" onclick="stop()" />
 	<img id="restart" src="img/restart.png" onclick="window.location.reload()"/>
+	<div id="console"></div>
 </div>
 
 <!-- IMAGES -->
@@ -39,14 +40,17 @@
 	<img src="img/nolliepop.png" id="nolliepop" />
 	<img src="img/background.png" id="background" />
 	<img src="img/rock.png" id="rock" />
+	<img src="img/skateboard.png" id="skateboard" />
 </div>
 
 
 <script src="js/config.js"></script>
 <script src="js/help.js"></script>
 <script src="js/world.js"></script>
+<script src="js/player.js"></script>
 <script src="js/game.js"></script>
 <script src="js/controls.js"></script>
+<script src="js/draw.js"></script>
 <script src="js/main.js"></script>
 
 

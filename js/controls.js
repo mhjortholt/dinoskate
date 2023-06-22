@@ -11,13 +11,13 @@ function linkAction(id, action_name, action_name_2) {
 	el.addEventListener('mouseup', function(e) { action[action_name] = false; }, false);
 }
 
-let skateCanvas = document.getElementById('skate_canvas');
-let skate_ctx = skateCanvas.getContext('2d');
+let swipeCanvas = document.getElementById('swipe_canvas');
+let swipe_ctx = swipeCanvas.getContext('2d');
 
 let touchPoints = [];
-skateCanvas.addEventListener('touchstart', function(e) { 
+swipeCanvas.addEventListener('touchstart', function(e) { 
 	
-	var rect = skateCanvas.getBoundingClientRect();
+	var rect = swipeCanvas.getBoundingClientRect();
 	for (var i =  0; i < e.touches.length; i++) {
 		let touch = e.touches[i];
 		let x = touch.clientX - rect.left;
@@ -31,7 +31,7 @@ skateCanvas.addEventListener('touchstart', function(e) {
 		});
 
 		if(y > 200) {
-			healPress();
+			heelPress();
 		} else {
 			nosePress();
 		}
@@ -40,8 +40,8 @@ skateCanvas.addEventListener('touchstart', function(e) {
  }, false);
 
 
-skateCanvas.addEventListener('touchmove', function(e) {
-	var rect = skateCanvas.getBoundingClientRect();
+swipeCanvas.addEventListener('touchmove', function(e) {
+	var rect = swipeCanvas.getBoundingClientRect();
 	for (var i =  0; i < e.touches.length; i++) {
 		let touch = e.touches[i];
 		let x = touch.clientX - rect.left;
@@ -70,14 +70,14 @@ function updateTouch() {
 function drawTouch() {
 
 	// Clear
-	skate_ctx.clearRect(0,0, skateCanvas.width, skateCanvas.height);
+	swipe_ctx.clearRect(0,0, swipeCanvas.width, swipeCanvas.height);
 
 	touchPoints.forEach(function(point) {
 		
-		skate_ctx.beginPath();
-		skate_ctx.arc(point.x, point.y, 15, 0, 2 * Math.PI);
-		skate_ctx.fillStyle = 'rgba(255,255,255,' + point.fade +')';
-		skate_ctx.fill();
+		swipe_ctx.beginPath();
+		swipe_ctx.arc(point.x, point.y, 15, 0, 2 * Math.PI);
+		swipe_ctx.fillStyle = 'rgba(255,255,255,' + point.fade +')';
+		swipe_ctx.fill();
 	});
 
 }

@@ -4,6 +4,11 @@ window.onload = function() {
 
 	ctx = canvas.getContext('2d');
 	resize();
+
+	if (ON_SCREEN_LOGGING) {
+		screenConsole.style.display = 'block';
+	}
+
 	start();
 };
 
@@ -11,11 +16,10 @@ function resize() {
 	console.log('Resize');
 	
 	// skateboard
-	skateCanvas.style.width = '350px';
-	skateCanvas.style.height = window.innerHeight;
-	skateCanvas.width = 350;
-	skateCanvas.height = window.innerHeight;
-
+	swipeCanvas.style.width = '350px';
+	swipeCanvas.style.height = window.innerHeight;
+	swipeCanvas.width = 350;
+	swipeCanvas.height = window.innerHeight;
 
 
 	// SEGA genesis resolution
