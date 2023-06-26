@@ -63,12 +63,20 @@ var Modules = new (function() {
 	this.gap = function(config) {
 		var segment = [];
 		config = defaultConfig(config);
-		segment.push({ w: 0, h: 1000 });
+		segment.push({ w: 0, h: 200 });
 		segment.push({ w: config.length, h: 0 });
-		segment.push({ w: 0, h: -1000 });
+		segment.push({ w: 0, h: -200 });
 		return segment;
 	};
 
+	this.brailleDrop = function(config) {
+		var segment = [];
+		config = defaultConfig(config);
+		segment.push({ w: 100, h: 0 });
+		segment.push({ w: 0, h: 200 });
+		segment.push({ w: 100, h: 0 });
+		return segment;
+	};
 
 /*
 	

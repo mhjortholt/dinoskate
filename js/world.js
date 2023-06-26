@@ -12,9 +12,15 @@ let world = {
 // Add modules
 world.tiles.push( ...Modules.stairs({ steps: 3 }));
 world.tiles.push( ...Modules.straight({ length: 400 }));
+
+world.tiles.push( ...Modules.gap({ length: 40 }));
+world.tiles.push( ...Modules.straight({ length: 400 }));
+
 world.tiles.push( ...Modules.box({ length: 150 }));
 world.tiles.push( ...Modules.straight({ length: 400 }));
 world.tiles.push( ...Modules.stairs({ steps: 5 }));
+world.tiles.push( ...Modules.straight({ length: 400 }));
+world.tiles.push( ...Modules.brailleDrop());
 world.tiles.push( ...Modules.straight({ length: 400 }));
 world.tiles.push( ...Modules.curb());
 world.tiles.push( ...Modules.straight({ length: 400 }));
@@ -22,6 +28,8 @@ world.tiles.push( ...Modules.ramp());
 world.tiles.push( ...Modules.straight({ length: 400 }));
 world.tiles.push( ...Modules.gap({ length: 40 }));
 
+world.tiles.push( ...Modules.straight({ length: 400 }));
+world.tiles.push( ...Modules.stairs({ steps: 2, step_height: -10 }));
 
 world.tiles.push({ w: 20000, h: 0 }); // PADDED TILES TO BE SAFE
 world.tiles.push({ w: 100, h: 0 });
@@ -51,14 +59,14 @@ function updateWorld() {
 	if(box.x < -box.w) {
 		box.x = 500;
 	}*/
-	world.x -= 1.6;
+	world.x -= 2.4;
 
 	let targetY = worldY(wheel1);
 	if(world.y !== targetY  ) {
 		if (Math.abs(world.y - targetY) < 2) {
 			world.y = targetY;
 		} else if(world.y > targetY) {
-			log('yooo1')
+			
 			world.y -= 1.42;
 		} else {
 			world.y += 1.42;

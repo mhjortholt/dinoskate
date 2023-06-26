@@ -7,9 +7,12 @@ html, body {
 	-webkit-user-select: none; /* Disable selection/copy in UIWebView */
 	-webkit-tap-highlight-color: transparent;
 
-	 position: fixed; top: 0; left: 0; right:0; bottom: 0;
+	position: fixed; top: 0; left: 0; right:0; bottom: 0;
+	background-color: #000;
 }
-
+body * {
+	background-color: transparent;
+}
 
 canvas {
 	position: fixed;
